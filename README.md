@@ -1,4 +1,4 @@
-# 💀 UVZ-AUTHER
+# 💀 WAUTHER
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)
 ![Tauri](https://img.shields.io/badge/Tauri-FFC131?style=for-the-badge&logo=tauri&logoColor=white)
@@ -8,19 +8,19 @@
 
 **Because your memory is a sieve and your digital security is a cry for help.**
 
-Let’s be honest: you’re either using `password123` for your bank account or you have a crusty Post-it note stuck to your webcam. **uvz-auther** is a Tauri-powered key manager designed for people who want to look like "l33t hackers" while actually just being terrified of losing their API keys.
+Let’s be honest: you’re either using `password123` for your bank account or you have a crusty Post-it note stuck to your webcam. **WAuther** is a Tauri-powered TOTP generator designed for people who want to look like "l33t hackers" while actually just being terrified of losing their API keys.
 
 It’s fast, it’s desktop-native, and it consumes less RAM than a single Chrome tab. 
 
 
 ## 🖤 The Gory Details
 
-**uvz-auther** is a minimalist vault that hides your secrets so you don't have to explain to your boss why the production keys are on a public Trello board. Built with **Tauri**, it’s lean, mean, and doesn't bloat your system like those Electron-based memory leaks.
+**WAuther** is a minimalist vault that hides your secrets so you don't have to explain to your boss why the production keys are on a public Trello board. Built with **Tauri**, it’s lean, mean, and doesn't bloat your system like those **Electron-based** memory leaks.
 
 ### 🕳️ Where do the bodies go?
-We don’t trust "The Cloud." The Cloud is just a fancy term for "someone else's server that's currently being raided by the feds." 
+We don’t trust "**The Cloud.**" The Cloud is just a fancy term for "someone else's server that's currently being raided by the feds." 
 
-Instead, **uvz-auther** shoves your data into the local abyss:
+Instead, **WAauther** shoves your data into the local abyss:
 `~/.uvz-auth-keys.env`
 
 > **PRO-TIP:** If you delete this file, your keys are gone. If you format your drive, your keys are gone. If you accidentally `rm -rf ~` while drunk-coding, your keys are gone—and you’ll have earned the silence that follows.
@@ -33,11 +33,11 @@ If you have the audacity to run unvetted code from the internet (of course you d
 
 1. **Clone the nightmare:**
 ```bash
-   git clone https://github.com/uvz0/uvz-auther
+   git clone https://github.com/AstroJr0/wauther
 ```
 2. Enter the void:
 ```bash
-cd uvz-auther
+cd wauther
 ```
 3. Feed the dependencies:
 
@@ -58,7 +58,7 @@ This software is provided "as is," which is a polite way of saying it might work
 
 - No Support: If you forget your master password, don't email me. I don't have it. Nobody has it. God can't even help you.
 
-- Skill Issue: uvz-auther assumes you are a semi-competent adult. If you aren't, go back to using a physical notebook and a crayon.
+- Skill Issue: WAuther assumes you are a semi-competent adult. If you aren't, go back to using a physical notebook and a crayon.
 
 ## 🩸 Contribution
 Found a bug? Keep it as a pet. Or, if you’re feeling masochistic, open a Pull Request and try to convince me your code doesn't suck. Check CONTRIBUTING.md for the rules of engagement.
