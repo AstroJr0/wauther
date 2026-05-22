@@ -1,4 +1,5 @@
 # 💀 WAUTHER
+## UNDER MAINTENANCE!!!!1!1!1 
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)
 ![Tauri](https://img.shields.io/badge/Tauri-FFC131?style=for-the-badge&logo=tauri&logoColor=white)
