@@ -1,7 +1,4 @@
-// ============================================================================
-// TAURI IPC & INITIALIZATION (Beginning of a sexy totp generator)
-// ============================================================================
-
+// tauri ipc and init
 function invoke(cmd, args = {}) {
   return window.__TAURI__.core.invoke(cmd, args);
 }
@@ -9,9 +6,7 @@ function invoke(cmd, args = {}) {
 let keys = []; 
 let totpIntervals = {}; 
 
-// ============================================================================
-// INITIALIZATION !
-// ============================================================================
+// init
 
 document.addEventListener('DOMContentLoaded', async () => {
   setupEventListeners();
@@ -19,10 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderKeyCards();
 });
 
-// ============================================================================
-// EVENT LISTENERS
-// ============================================================================
-
+// event lisnters
 function setupEventListeners() {
   const manualPanel = document.getElementById('manual-panel');
   const toggleBtn = document.getElementById('toggle-manual-panel');
@@ -57,10 +49,7 @@ function clearInputs() {
   document.getElementById('secret-value').value = '';
 }
 
-// ============================================================================
-// PASSWORD VISIBILITY TOGGLE
-// ============================================================================
-
+// password visibility toggle
 function togglePasswordVisibility() {
   const input = document.getElementById('secret-value');
   const btn = document.getElementById('toggle-password');
@@ -69,10 +58,7 @@ function togglePasswordVisibility() {
   btn.textContent = isPassword ? '🙈' : '👁️';
 }
 
-// ============================================================================
-// BASE32 VALIDATION
-// ============================================================================
-
+// function to validate Base32
 function isValidBase32(input) {
   // Base32 alphabet (RFC 4648): A-Z, 2-7, padding with =
   const base32Regex = /^[A-Z2-7]+=*$/;
@@ -80,10 +66,7 @@ function isValidBase32(input) {
 }
 
 
-// ============================================================================
-// KEY MANAGEMENT
-// ============================================================================
-
+// load keys from file
 async function loadKeysFromFile() {
   try {
     const raw = await invoke('load_keys');
@@ -113,10 +96,7 @@ async function deleteKeyFromFile(name) {
   }
 }
 
-// ============================================================================
-// ADD KEY - MANUAL
-// ============================================================================
-
+// manual key add
 async function addKeyManual() {
   const name = document.getElementById('secret-name').value.trim();
   const secret = document.getElementById('secret-value').value.trim();
@@ -156,10 +136,7 @@ async function addKeyManual() {
   }
 }
 
-// ============================================================================
-// ADD KEY - FROM URI
-// ============================================================================
-
+// add keys from a URI
 async function addKeyFromURI() {
   const uri = document.getElementById('uri-input').value.trim();
 
@@ -197,10 +174,7 @@ async function addKeyFromURI() {
   }
 }
 
-// ============================================================================
-// DELETE KEY
-// ============================================================================
-
+// delete a key
 async function deleteKey(name) {
   if (!confirm(`Delete key "${name}"? This cannot be undone.`)) {
     return;
@@ -222,12 +196,10 @@ async function deleteKey(name) {
   }
 }
 
-// ============================================================================
-// TOTP GENERATION & TIMER
-// ============================================================================
 
 /**
  * Generate TOTP for a key
+ * with a timer
  */
 async function generateTOTP(secret, counter) {
   try {
@@ -284,10 +256,8 @@ function startTOTPTimer(name, secret) {
   }, 1000);
 }
 
-// ============================================================================
-// RENDERING
-// ============================================================================
-
+// to render elements
+// has templates inside
 function renderKeyCards() {
   const container = document.getElementById('keys-container');
   
@@ -345,10 +315,7 @@ function renderKeyCards() {
   });
 }
 
-// ============================================================================
-// UTILITIES
-// ============================================================================
-
+// other utils
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
