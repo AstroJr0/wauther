@@ -17,6 +17,8 @@ this is the remastered version or the previous TOTP. heres the comparison table:
 | Will development be continued? | it doesnt exist | Yes! |
 | How good is the UI? | Its trash | Inspired by M3 design language |
 | Is it fun to use? | IDK, but negative | Will try :) |
+| How will it be fun to use? | What? | I will try to implement *Expressiveness* cz since its a project i made for fun only |
+| Is it a professional TOTP Gen? | No | No, as i said before, its a project i made for fun |
 | Why switch from v1 to v2? | It was a webapp | but now, its a native app |
 | Are pull requests open? | No | For everyone!
 | Can I Submit issues? | Nope | Yes, but keep it simple and Concise |
