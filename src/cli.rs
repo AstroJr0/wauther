@@ -18,7 +18,7 @@ use clap::{Args, Parser, Subcommand};
 use crate::core::{Key, Settings, Uri, Vault};
 use crate::tui::{Start, Temp};
 
-/// A TOTP authenticator, in the terminal and on the desktop.
+// A TOTP authenticator, in the terminal and on the desktop.
 #[derive(Debug, Parser)]
 #[command(name = "wauther", version, about)]
 pub struct Cli {
@@ -28,35 +28,33 @@ pub struct Cli {
 
 #[derive(Debug, Subcommand)]
 enum Command {
-    /// Save a key to the vault
+    // Save a key to the vault
     Add(AddArgs),
-    /// Show a key's codes without saving it (always opens the TUI)
+    // Show a key's codes without saving it (always opens the TUI)
     Temp(TempArgs),
-    /// Open the app
+    // Open the app
     Run(RunArgs),
-    /// Show where the vault file lives, or move it
+    // Show where the vault file lives, or move it
     Path {
-        /// The new vault file. Without it, the current one is shown.
+        // The new vault file. Without it, the current one is shown.
         path: Option<PathBuf>,
     },
 }
 
 #[derive(Debug, Args)]
 struct AddArgs {
-    /// Name of the key
     #[arg(value_name = "NAME")]
     name_arg: Option<String>,
-    /// The secret, or an otpauth:// URI
+    
     #[arg(value_name = "KEY")]
     key_arg: Option<String>,
-    /// Name of the key
+    
     #[arg(short, long, value_name = "NAME")]
     name: Option<String>,
-    /// The secret, or an otpauth:// URI
+    
     #[arg(short, long, value_name = "KEY")]
     key: Option<String>,
-    /// Take the key from an otpauth:// URI. The name comes from the URI
-    /// unless you give one.
+    
     #[arg(
         short = 'u',
         long = "from-uri",
@@ -68,37 +66,34 @@ struct AddArgs {
 
 #[derive(Debug, Args)]
 struct TempArgs {
-    /// The secret, or an otpauth:// URI
+    // The secret, or an otpauth:// URI
     #[arg(
         value_name = "KEY",
         required_unless_present = "uri",
         conflicts_with = "uri"
     )]
     key: Option<String>,
-    /// Take the key from an otpauth:// URI
+    // Take the key from an otpauth:// URI
     #[arg(short = 'u', long = "from-uri", value_name = "URI")]
     uri: Option<String>,
 }
 
 #[derive(Debug, Args)]
 struct RunArgs {
-    /// Run in the terminal instead of opening a window
+    // Run in the terminal instead of opening a window
     #[arg(short, long)]
     tui: bool,
 }
 
-/// What `main` does once the command has been understood.
+// What `main` does once the command has been understood.
 #[derive(Debug)]
 pub enum Next {
-    /// The command did its job and printed what it had to say.
     Done,
-    /// Open the terminal UI.
     Tui(Start),
-    /// Open the desktop window.
     Gui,
 }
 
-/// What an `add` command asks for, with its arguments sorted out.
+// What an `add` command asks for, with its arguments sorted out.
 #[derive(Debug, PartialEq, Eq)]
 enum Add {
     Key { name: String, key: String },
@@ -120,7 +115,7 @@ impl AddArgs {
     }
 }
 
-/// A value that may be given as a positional argument or as a flag, but not both.
+// A value that may be given as a positional argument or as a flag, but not both.
 fn pick(
     positional: Option<String>,
     flag: Option<String>,
@@ -132,11 +127,8 @@ fn pick(
     }
 }
 
-/// Does what `cli` asks. Anything that needs a screen is handed back as [`Next`].
-///
-/// # Errors
-///
-/// Whatever went wrong, ready to print.
+// Does what `cli` asks. Anything that needs a screen is handed back as [`Next`]
+// well.. whatever went wrong, ready to print.
 pub fn run(cli: Cli) -> Result<Next, Box<dyn Error>> {
     match cli.command {
         None | Some(Command::Run(RunArgs { tui: false })) => Ok(Next::Gui),
