@@ -3,7 +3,7 @@
 A project made for fun! There might be other TOTP generators out there but if you're using mine, huge thank you!
 
 this is the remastered version or the previous TOTP. heres the comparison table:
-| Checks | WAuther v1 | WAuther v2|
+| Comparison | WAuther v1 | WAuther v2|
 |---|---|---|
 | Codebase | Tauri + Rust | full Rust|
 | In simple term | A Webapp | A native app
