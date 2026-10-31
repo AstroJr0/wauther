@@ -1,18 +1,18 @@
-# WAUTHER v2
+# WAUTHER v2 ( under construction, rebuilding the UI using QT through `qt_bridge`)
 
-A project made for fun! There might be other TOTP generators out there but if you're using mine, huge thank you!
+> A project made for fun. There might be other TOTP generators out there but if you're using mine, huge thank you!
 
-this is the remastered version or the previous TOTP. heres the comparison table:
-| Comparison | WAuther v1 | WAuther v2|
+This is the remastered version or the previous TOTP. heres the comparison table:
+| Comparison | WAuther v1 | WAuther v2.1 |
 |---|---|---|
-| Codebase | Tauri + Rust | full Rust|
+| Codebase | Tauri + Rust | Rust + QtQml |
 | In simple term | A Webapp | A native app
 | performance | Not Bad | Elite |
 | Features | UI only | now has CLI and TUI |
 | UI | junky | Material 3 inspired |
 | CLI Support | None | Many |
 
-| FAQ | WAuther v1 | WAuther v2 |
+| FAQ | WAuther v1 | WAuther v2.1 |
 |---|---|---|
 | Will development be continued? | it doesnt exist | Yes! |
 | How good is the UI? | Its trash | Inspired by M3 design language |
