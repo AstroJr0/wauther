@@ -1,31 +1,16 @@
 //! A concave corner: the inverse of a rounded one.
 //!
 //! A rounded corner cuts a quarter disc out of a container. A concave corner
-//! does the opposite: it fills the sliver between a container and the edge it
-//! sits against, so the container's outline flares out into that edge instead
-//! of meeting it at a right angle.
-//!
-//! ```text
-//!   container ┐          container ┐
-//!             │                    │
-//!   ──────────┘   becomes   ───────╯──
-//!   (edge)                  (edge, flared)
-//! ```
-//!
-//! The piece is a square of side `radius` with a quarter disc removed. It is
-//! drawn as a fan of triangles from `at`, the container's corner, over the arc.
-
 use std::f32::consts::FRAC_PI_2;
-
 use eframe::egui::{Color32, Mesh, Painter, Pos2, Rect, Shape, pos2, vec2};
 
-/// Arc segments. A quarter circle this coarse is smooth up to ~100px.
+// arc segments. A quarter circle this coarse is smooth up to ~100px.
 const SEGMENTS: u32 = 24;
 
-/// Which way the filled square lies from the corner it is anchored to.
+// Which way the filled square lies from the corner it is anchored to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Toward {
-    NorthWest,
+    NorthWest, //
     NorthEast,
     SouthWest,
     SouthEast,
