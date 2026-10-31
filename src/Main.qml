@@ -1,15 +1,3 @@
-// wauther's window.
-//
-// What this file expects from Rust (a singleton named Backend, module `wauther`):
-//   property rowsJson : String   JSON array of
-//                                { name, code, valid, expires, period }
-//                                `expires` = unix milliseconds when `code` stops being valid,
-//                                `code` = "" and `valid` = false if the stored key is broken
-//   slot refresh()               recompute rowsJson, emit rowsJsonChanged
-//   slot add(name, key)          -> String   "" on success, else the error text
-//   slot addUri(uri, name)       -> String   same; `name` may be ""
-//   slot remove(name)            -> String   same
-// Needs Concave.qml and Prompt.qml next to it.
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Shapes
@@ -59,7 +47,7 @@ ApplicationWindow {
 
     TextEdit { id: clipboard; visible: false }
 
-    // ------------------------------------------------------------- logic
+    // logic 
 
     function sync(json) {
         const rows = JSON.parse(json);
@@ -128,7 +116,7 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------ header
+    // header title
 
     Column {
         id: header
@@ -138,7 +126,7 @@ ApplicationWindow {
         width: parent.width
         spacing: 22
 
-        // A white W on a purple badge, then the rest of the name.
+        // its the white "W" on a purple badge, then the rest of the name.
         Item {
             width: header.width
             height: 48
@@ -163,8 +151,10 @@ ApplicationWindow {
                     }
                     // Tungsten's atomic number, like a cell of the periodic table.
                     Text {
-                        x: 6
-                        y: parent.height - height - 4
+                        anchors.left: parent.left
+                        anchors.bottom: parent.bottom
+                        anchors.leftMargin: 6
+                        anchors.bottomMargin: 6
                         text: "74"
                         color: "white"
                         opacity: 0.7
@@ -173,7 +163,7 @@ ApplicationWindow {
                 }
                 Text {
                     anchors.verticalCenter: badge.verticalCenter
-                    text: "auther"
+                    text: "Auther"
                     color: m3.onSurface
                     font.pixelSize: 34
                     font.bold: true
@@ -181,7 +171,7 @@ ApplicationWindow {
             }
         }
 
-        // Three dots. Still until hovered, then they blink one after another.
+        // seperator
         Item {
             width: header.width
             height: 40
@@ -222,7 +212,7 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------- table
+    // list view of the keys
 
     ListView {
         id: list
@@ -234,7 +224,7 @@ ApplicationWindow {
         anchors.right: parent.right
         anchors.leftMargin: 16
         anchors.rightMargin: 16
-        bottomMargin: 112               // room for the + button
+        anchors.bottomMargin: 112
         spacing: 2
         clip: true
         model: keys
@@ -345,8 +335,6 @@ ApplicationWindow {
                 }
             }
 
-            // Delete: slides in from the right on hover, joined to the row by two concave curves.
-            // The first press arms it (red, check mark), the second deletes.
             Rectangle {
                 id: del
 
@@ -452,9 +440,7 @@ ApplicationWindow {
         }
     }
 
-    // --------------------------------------------------------------- fab
-
-    // The big +, in the bottom-right corner, joined to the window edges by two concave curves.
+    // fab
     Item {
         id: fab
 
@@ -515,7 +501,7 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------- toast
+    // toast
 
     Rectangle {
         id: toast
@@ -545,8 +531,7 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------ prompt
-
+    // prompt
     Prompt {
         id: prompt
 
