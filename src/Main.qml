@@ -4,10 +4,12 @@ import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Shapes
 import QtQuick.Layouts
-import wauther   // Backend: rowsJson, refresh(), add(), addUri(), remove(); the last three return "" or an error
 
 ApplicationWindow {
     id: root
+
+    // The Rust side: rowsJson, error, refresh(), add(name, key), addUri(uri, name), remove(name).
+    required property var backend
 
     function copy(code, name) {
         clipboard.text = code;
@@ -17,18 +19,18 @@ ApplicationWindow {
     }
 
     function remove(name) {
-        const error = Backend.remove(name);
-        toast.show(error || qsTr("Deleted %1").arg(name));
-        Backend.refresh();
+        backend.remove(name);
+        toast.show(backend.error || qsTr("Deleted %1").arg(name));
+        backend.refresh();
     }
 
-    function added(error, name) {
-        prompt.error = error;
-        if (error)
+    function added(name) {
+        prompt.error = backend.error;
+        if (prompt.error)
             return;
         prompt.clear();
         prompt.close();
-        Backend.refresh();
+        backend.refresh();
         toast.show(qsTr("Added %1").arg(name));
     }
 
@@ -66,14 +68,14 @@ ApplicationWindow {
         readonly property color outlineVariant: "#43474E"
     }
 
-    Component.onCompleted: Backend.refresh()
+    Component.onCompleted: backend.refresh()
 
     Connections {
         function onRowsJsonChanged() {
-            list.sync(Backend.rowsJson);
+            list.sync(root.backend.rowsJson);
         }
 
-        target: Backend
+        target: root.backend
     }
 
     TextEdit {
@@ -105,7 +107,7 @@ ApplicationWindow {
             rightMargin: 16
         }
 
-        onRefreshNeeded: Backend.refresh()
+        onRefreshNeeded: root.backend.refresh()
         onCopyRequested: (code, name) => root.copy(code, name)
         onDeleteRequested: name => root.remove(name)
     }
@@ -160,8 +162,14 @@ ApplicationWindow {
         anchors.fill: parent
         z: 1
 
-        onAddManual: (name, key) => root.added(Backend.add(name, key), name.trim())
-        onAddUri: (uri, name) => root.added(Backend.addUri(uri, name), name || qsTr("key"))
+        onAddManual: (name, key) => {
+            root.backend.add(name, key);
+            root.added(name.trim());
+        }
+        onAddUri: (uri, name) => {
+            root.backend.addUri(uri, name);
+            root.added(name || qsTr("key"));
+        }
     }
 
     component Concave: Shape {

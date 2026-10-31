@@ -1,0 +1,29 @@
+[package]
+name = "wauther"
+version = "2.0.0"
+description = "A TOTP authenticator, in the terminal and on the desktop."
+authors = ["AstroJr0"]
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+arboard = { version = "3", default-features = false, features = ["wayland-data-control"] }
+clap = { version = "4", features = ["derive"] }
+dirs = "6"
+hmac = "0.12"
+indexmap = { version = "2", features = ["serde"] }
+qtbridge = "0.4"
+ratatui = "0.29"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha1 = "0.10"
+sha2 = "0.10"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+opt-level = "s"
+lto = "thin"
+panic = "abort"
+strip = true
