@@ -1,6 +1,6 @@
 [package]
 name = "wauther"
-version = "2.0.0"
+version = "2.1.0"
 description = "A TOTP authenticator, in the terminal and on the desktop."
 authors = ["AstroJr0"]
 edition = "2024"
