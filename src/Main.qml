@@ -54,7 +54,7 @@ ApplicationWindow {
 
     Component.onCompleted: backend.refresh()
 
-    // Material 3 dark scheme, blue seed. "on" colours are named *Text: QML reads onFoo as a signal handler.
+    // Material 3 dark scheme, blue seed.
     QtObject {
         id: theme
 
@@ -198,8 +198,6 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------ shapes
-
     // A filler that turns a right angle between a container and an edge into a curve.
     // The box has the container's corner at: bottom-left (default), top-left (isTop), and the mirror of both (mirrored).
     component Concave: Shape {
@@ -288,7 +286,7 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------- icons
+    //  icons
 
     component CopyIcon: Item {
         property color color
@@ -387,8 +385,7 @@ ApplicationWindow {
         }
     }
 
-    // ------------------------------------------------------------ header
-
+    // header title
     // A white W on a purple badge, then the rest of the name.
     component Brand: Row {
         spacing: 6
@@ -411,7 +408,7 @@ ApplicationWindow {
                 }
             }
 
-            // Tungsten's atomic number, like a periodic table cell.
+            // Tungsten's atomic number, to make it cool.
             Text {
                 text: "74"
                 color: "#b3ffffff"
@@ -435,7 +432,7 @@ ApplicationWindow {
         }
     }
 
-    // The brand, and three dots: still until hovered, then they blink one after another.
+    // seperator
     component Header: Column {
         id: header
 
@@ -503,8 +500,7 @@ ApplicationWindow {
         }
     }
 
-    // -------------------------------------------------------------- keys
-
+    // keys
     // rows: [{ name, code, secret, valid, expires (unix ms), period (s) }]
     component KeyList: ListView {
         id: list
@@ -690,7 +686,8 @@ ApplicationWindow {
                     }
 
                     Concave {
-                        x: -radius
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.left
                         radius: Math.min(16, Math.round(del.width / 4))
                         color: del.color
                         isTop: true
@@ -698,8 +695,8 @@ ApplicationWindow {
                     }
 
                     Concave {
-                        x: -radius
-                        y: del.height - radius
+                        anchors.right: parent.left
+                        anchors.top: parent.top
                         radius: Math.min(16, Math.round(del.width / 4))
                         color: del.color
                         mirrored: true
@@ -821,8 +818,6 @@ ApplicationWindow {
             }
         }
     }
-
-    // ---------------------------------------------------- fab and toast
 
     // The big +, in the bottom-right corner, joined to the window edges by two concave curves.
     component Fab: Item {
