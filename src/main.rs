@@ -1,8 +1,7 @@
+mod backend;
 mod cli;
-mod concave;
 mod core;
 mod tui;
-mod ui;
 
 use std::process::ExitCode;
 
@@ -15,7 +14,7 @@ fn main() -> ExitCode {
         Ok(Next::Done) => ExitCode::SUCCESS,
         Ok(Next::Tui(start)) => finish(tui::run(start)),
         Ok(Next::Gui) => match core::Vault::open_default() {
-            Ok(vault) => finish(ui::run(vault)),
+            Ok(vault) => ExitCode::from(u8::try_from(backend::run(vault)).unwrap_or(1)),
             Err(e) => finish(Err(e)),
         },
         Err(e) => {
