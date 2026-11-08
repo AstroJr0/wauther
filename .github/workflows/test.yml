@@ -9,7 +9,7 @@ env:
 
 jobs:
   check:
-    runs-on: codeberg-small
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
